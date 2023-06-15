@@ -15,7 +15,7 @@
     "axios": "^0.20.0",
     "firebase": "^7.19.0",
     "lodash": "^4.17.20",
-    "react": "^16.13.1",
+    "react": "^18.2.0",
     "react-datepicker": "^3.2.2",
     "react-dom": "^16.13.1",
     "react-image-file-resizer": "^0.3.7",
