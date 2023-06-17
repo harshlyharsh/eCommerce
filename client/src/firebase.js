@@ -4,6 +4,7 @@ import * as firebase from "firebase";
 const firebaseConfig = {
   apiKey: "AIzaSyAO-mmXq9bMjD_FBWjopLWP-O1yKvD-pxg",
   authDomain: "ecommerce-23d9b.firebaseapp.com",
+  databaseURL: "https://ecommerce-23d9b-default-rtdb.firebaseio.com/",
   projectId: "ecommerce-23d9b",
   storageBucket: "ecommerce-23d9b.appspot.com",
   messagingSenderId: "391016754272",
