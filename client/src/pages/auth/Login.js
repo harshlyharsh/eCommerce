@@ -20,8 +20,8 @@ const createOrUpdateUser = async (authtoken) => {
 };
 
 const Login = ({ history }) => {
-  const [email, setEmail] = useState("gqlreactnode@gmail.com");
-  const [password, setPassword] = useState("gggggg");
+  const [email, setEmail] = useState("rajaharsh2301@gmail.com");
+  const [password, setPassword] = useState("Raja2301#");
   const [loading, setLoading] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
