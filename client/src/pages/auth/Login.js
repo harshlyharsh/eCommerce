@@ -9,6 +9,7 @@ import {createOrUpdateUser} from "../../functions/auth";
 
 
 
+
 const Login = ({ history }) => {
   const [email, setEmail] = useState("rajaharsh2301@gmail.com");
   const [password, setPassword] = useState("Raja2301#");
@@ -21,6 +22,15 @@ const Login = ({ history }) => {
   }, [user]);
 
   let dispatch = useDispatch();
+
+  const roleBasedRedirect = (res) => {
+    if(res.data.role === "admin"){
+      history.push("/admin/dashboard");
+    }
+    else{
+      history.push("/user/history");
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,11 +52,13 @@ const Login = ({ history }) => {
             role:res.data.role,
             _id:res.data._id,
           },
-        });})
+        });
+        roleBasedRedirect(res);
+      })
         .catch(err => console.log(err));
 
       
-      history.push("/");
+      // history.push("/");
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -71,9 +83,10 @@ const Login = ({ history }) => {
             _id:res.data._id,
           },
         });
+        roleBasedRedirect(res);
       })
       .catch(err => console.log(err));
-        history.push("/");
+        // history.push("/");
       })
       .catch((err) => {
         console.log(err);
