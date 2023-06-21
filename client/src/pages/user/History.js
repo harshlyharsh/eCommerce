@@ -1,10 +1,11 @@
 import React from 'react'
+import UserNav from "../../components/nav/UserNav";
 
 const History = () => (
     <div className="container-fluid">
         <div className="row">
            <div className="col">
-            user history page
+           <UserNav />
            </div> 
         </div>
     </div>
