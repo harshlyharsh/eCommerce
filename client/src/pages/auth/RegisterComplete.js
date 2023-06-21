@@ -58,7 +58,7 @@ const RegisterComplete = ({ history }) => {
             _id:res.data._id,
           },
         });})
-        .catch();
+        .catch(err => console.log(err));
 
         // redirect
         history.push("/");
