@@ -25,8 +25,10 @@ exports.userCart = async (req, res) => {
     object.count = cart[i].count;
     object.color = cart[i].color;
     // get price for creating total
-    let { price } = await Product.findById(cart[i]._id).select("price").exec();
-    object.price = price;
+    let productFromDb = await Product.findById(cart[i]._id)
+      .select("price")
+      .exec();
+    object.price = productFromDb.price;
 
     products.push(object);
   }
@@ -56,7 +58,29 @@ exports.getUserCart = async (req, res) => {
   let cart = await Cart.findOne({ orderdBy: user._id })
     .populate("products.product", "_id title price totalAfterDiscount")
     .exec();
+    if (cart !== null) {
+      const { products, cartTotal, totalAfterDiscount } = cart;
+      // Rest of your code that uses the 'products' variable
+      res.json({ products, cartTotal, totalAfterDiscount });
+    } else {
+      // Display an error message
+      console.log("The cart is empty or not available.");
+    }
+};
 
-  const { products, cartTotal, totalAfterDiscount } = cart;
-  res.json({ products, cartTotal, totalAfterDiscount });
+exports.emptyCart = async (req, res) => {
+  console.log("empty cart");
+  const user = await User.findOne({ email: req.user.email }).exec();
+
+  const cart = await Cart.findOneAndRemove({ orderdBy: user._id }).exec();
+  res.json(cart);
+};
+
+exports.saveAddress = async (req, res) => {
+  const userAddress = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { address: req.body.address }
+  ).exec();
+
+  res.json({ ok: true });
 };
